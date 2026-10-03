@@ -44,6 +44,34 @@ pipeline {
                 }
             }
         }
+        stage('Update Manifest Repo') {
+            steps {
+                echo "Updating Kubernetes manifest to image ${BUILD_NUMBER}"
+
+                dir('manifests') {
+                    git branch: 'main',
+                        credentialsId: 'github-manifest-credentials',
+                        url: 'https://github.com/manjugowda-l/devops-cicd-manifests.git'
+
+                    bat '''
+                        powershell -Command "(Get-Content deployment.yaml) -replace 'image: manjugowda200523/devops-cicd-demo:[0-9]+', 'image: manjugowda200523/devops-cicd-demo:%BUILD_NUMBER%' | Set-Content deployment.yaml"
+                    '''
+
+                    bat 'git config user.name "Jenkins"'
+                    bat 'git config user.email "jenkins@local"'
+
+                    bat 'git add deployment.yaml'
+                    bat 'git commit -m "Update image to build %BUILD_NUMBER%"'
+
+                    withCredentials([gitUsernamePassword(
+                        credentialsId: 'github-manifest-credentials',
+                        gitToolName: 'Default'
+                    )]) {
+                        bat 'git push origin main'
+                    }
+                }
+            }
+        }
 
     }
 
