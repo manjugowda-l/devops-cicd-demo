@@ -517,8 +517,3 @@ devops-cicd-demo/
 
 ---
 
-## Author
-
-**Manju L**
-
-Cloud & DevOps | AWS | Docker | Kubernetes | Jenkins | GitOps
