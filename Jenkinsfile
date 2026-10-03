@@ -25,6 +25,13 @@ pipeline {
             }
         }
 
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker image...'
+                bat 'docker build -t devops-cicd-demo:1.0 .'
+            }
+        }
+
     }
 
     post {
