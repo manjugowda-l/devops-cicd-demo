@@ -192,6 +192,7 @@ devops-cicd-demo
 ### Manifest Repository
 
 The manifest repository contains the desired Kubernetes state.
+https://github.com/manjugowda-l/devops-cicd-manifests
 
 ```text
 devops-cicd-manifests
