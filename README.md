@@ -8,7 +8,7 @@ The project combines **Jenkins, Maven, SonarQube, Docker, Docker Hub, Kubernetes
 
 ## Project Architecture
 
-![CI/CD and GitOps Architecture](architecture/architecture.png)
+![CI/CD and GitOps Architecture](screenshots/architecture.png)
 
 ---
 
